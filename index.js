@@ -76,20 +76,22 @@ document.addEventListener('DOMContentLoaded', () => {
         titleElement.textContent = movie.title;
         runtimeElement.textContent = `Runtime: ${movie.runtime} minutes`;
         showtimeElement.textContent = `Showtime: ${movie.showtime}`;
+         
+       //Define availableTickets
+       let availableTickets = movie.capacity - movie.tickets_sold;
+       ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+       
+       // Enable or disable the Buy Ticket button based on availability
+       buyButton.disabled = availableTickets <= 0;
+       buyButton.onclick = () => {
+           if (availableTickets > 0) {
+               availableTickets -= 1;
+               ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+               buyButton.disabled = availableTickets <= 0;
+           }
+       };
+   }
 
-        const availableTickets = movie.capacity - movie.tickets_sold;
-        ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
-        
-        // Enable or disable the Buy Ticket button based on availability
-        buyButton.disabled = availableTickets <= 0;
-        buyButton.onclick = () => {
-            if (availableTickets > 0) {
-                ticketsElement.textContent = `Tickets Available: ${availableTickets - 1}`;
-                buyButton.disabled = (availableTickets - 1 <= 0);
-            }
-        };
-    }
-
-    // Call the function to fetch movie data when the DOM content is loaded
+    // Fetch movie data when the DOM content is loaded
     fetchMovieData();
 });
