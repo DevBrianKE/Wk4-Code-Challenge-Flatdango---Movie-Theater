@@ -1,4 +1,4 @@
-// Step 1: Fetch Movie Data from `db.json`
+// Fetch Movie Data from `db.json`
 
 // Function to fetch movie data
 function fetchMovieData() {
@@ -14,3 +14,27 @@ function fetchMovieData() {
 }
 // Call the function to fetch movie data when the script loads
 fetchMovieData();
+// Function to display movies in the list
+
+
+// Display Movie Details
+
+// Function to display movie details
+function displayMovieDetails(movie) {
+    // get the elements where movie details will be displayed
+    const posterElement = document.getElementById('poster')
+    const titleElement = document.getElementById('title')
+    const runtimeElement = document.getElementById('runtime')
+    const showtimeElement = document.getElementById('showtime')
+    const ticketsElement = document.getElementById('tickets')
+
+    //update the HTML content with the movie details
+    posterElement.src = movie.poster //set the poster image
+    titleElement.textContent = movie.title //set the movie title
+    runtimeElement.textContent = `Runtime: ${movie.runtime} minutes`; // Set the runtime
+    showtimeElement.textContent = `Showtime: ${movie.showtime}`; // Set the showtime
+
+    // Calculate available tickets and update the text
+    const availableTickets = movie.capacity - movie.tickets_sold;
+    ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+}
