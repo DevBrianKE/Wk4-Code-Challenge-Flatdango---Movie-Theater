@@ -24,15 +24,17 @@ main {
     display: flex;
     justify-content: center;
     padding: 1rem;
+    width: 100%; /* Full width */
 }
 
 /* Container for sidebar and movie details */
 .container {
     display: flex;
     justify-content: space-between;
-    width: 80%;
-    max-width: 1200px;
+    width: 100%; /* Full width */
+    max-width: 1200px; /* Optional max-width */
     margin: 0 auto; /* Center horizontally */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 /* Sidebar styles */
@@ -45,6 +47,7 @@ aside {
     margin-right: 1rem; /* Space between sidebar and details */
     height: 80vh; /* Height to enable scrolling */
     overflow-y: auto; /* Enable vertical scrolling */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 /* Movie list styles */
@@ -83,6 +86,7 @@ ul#films li:hover {
     display: flex;
     flex-direction: column;
     align-items: center; /* Center content horizontally */
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
 }
 
 /* Movie poster styles */
@@ -127,6 +131,7 @@ button.sold-out:hover {
 
     aside {
         margin-right: 0;
+        margin-bottom: 1rem; /* Space between sidebar and details */
     }
 
     #poster {
