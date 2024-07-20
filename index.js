@@ -12,6 +12,12 @@ document.addEventListener('DOMContentLoaded', () => {
             .then(data => {
                 console.log('Fetched Movie Data:', data); // Log the fetched data to the console
                 displayMovies(data); // Pass the list of films to the displayMovies function
+
+                // Automatically display the default movie details
+                const defaultMovie = data.find(movie => movie.title === "The Giant Gila Monster");
+                if (defaultMovie) {
+                    displayMovieDetails(defaultMovie);
+                }
             })
             .catch(error => console.error('Error fetching data:', error)); // Handle any errors that occur during fetch
     }
@@ -48,10 +54,6 @@ document.addEventListener('DOMContentLoaded', () => {
         const runtimeElement = document.getElementById('runtime');
         const showtimeElement = document.getElementById('showtime');
         const ticketsElement = document.getElementById('tickets');
-
-        // // Check if the elements are being selected correctly
-        // console.log('Poster Element:', posterElement);
-        ;
 
         // Update the HTML content with the movie details
         posterElement.src = movie.poster; // Set the poster image source
