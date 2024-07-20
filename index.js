@@ -1,7 +1,6 @@
 document.addEventListener('DOMContentLoaded', () => {
     // Fetch Movie Data from `db.json`
     function fetchMovieData() {
-        // Fetch the list of movies
         fetch('http://localhost:3000/films')
             .then(response => {
                 if (!response.ok) {
@@ -55,6 +54,11 @@ document.addEventListener('DOMContentLoaded', () => {
             movieItem.dataset.id = movie.id;
             movieItem.classList.add('film', 'item');
 
+            // Add the 'sold-out' class if the movie is sold out
+            if (movie.capacity - movie.tickets_sold <= 0) {
+                movieItem.classList.add('sold-out');
+            }
+
             movieItem.addEventListener('click', () => {
                 console.log('Movie clicked:', movie);
                 fetchAndDisplayMovieDetails(movie.id);
@@ -71,26 +75,40 @@ document.addEventListener('DOMContentLoaded', () => {
         const showtimeElement = document.getElementById('showtime');
         const ticketsElement = document.getElementById('tickets');
         const buyButton = document.getElementById('buy-ticket');
-
+    
         posterElement.src = movie.poster;
         titleElement.textContent = movie.title;
         runtimeElement.textContent = `Runtime: ${movie.runtime} minutes`;
         showtimeElement.textContent = `Showtime: ${movie.showtime}`;
-         
+        
         // Define availableTickets
         let availableTickets = movie.capacity - movie.tickets_sold;
         ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
-       
+        
         // Enable or disable the Buy Ticket button based on availability
-        buyButton.disabled = availableTickets <= 0;
+        if (availableTickets <= 0) {
+            buyButton.disabled = true;
+            buyButton.classList.add('sold-out'); // Add 'sold-out' class
+            buyButton.textContent = "Sold Out"; // Update button text
+        } else {
+            buyButton.disabled = false;
+            buyButton.classList.remove('sold-out'); // Remove 'sold-out' class
+            buyButton.textContent = "Buy Ticket"; // Update button text
+        }
+    
         buyButton.onclick = () => {
             if (availableTickets > 0) {
                 availableTickets -= 1;
                 ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
                 buyButton.disabled = availableTickets <= 0;
+                if (availableTickets <= 0) {
+                    buyButton.classList.add('sold-out'); // Add 'sold-out' class
+                    buyButton.textContent = "Sold Out"; // Update button text
+                }
             }
         };
     }
+    
 
     // Fetch movie data when the DOM content is loaded
     fetchMovieData();

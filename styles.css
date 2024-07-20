@@ -1,3 +1,4 @@
+/* Global styles */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
@@ -6,8 +7,9 @@ body {
     color: #333;
 }
 
+/* Header styles */
 header {
-    background-color: #ff6347; 
+    background-color: #ff6347; /* Tomato color for the header */
     color: white;
     text-align: center;
     padding: 1rem 0;
@@ -17,53 +19,35 @@ h1 {
     margin: 0;
 }
 
+/* Main content area */
 main {
     display: flex;
     justify-content: center;
     padding: 1rem;
 }
 
+/* Container for sidebar and movie details */
 .container {
     display: flex;
     justify-content: space-between;
     width: 80%;
     max-width: 1200px;
+    margin: 0 auto; /* Center horizontally */
 }
 
-#movie-details {
-    flex: 2;
+/* Sidebar styles */
+aside {
+    flex: 1;
     padding: 1rem;
     background-color: #fff;
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-right: 1rem; /* Space between sidebar and details */
+    height: 80vh; /* Height to enable scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
 }
 
-#poster {
-    width: 100%;
-    max-width: 300px;
-    border-radius: 8px;
-}
-
-button {
-    background-color: #4caf50; 
-    color: white;
-    border: none;
-    padding: 0.5rem 1rem;
-    font-size: 1rem;
-    cursor: pointer;
-    border-radius: 4px;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #45a049; 
-}
-
-aside {
-    flex: 1;
-    padding: 1rem;
-}
-
+/* Movie list styles */
 ul#films {
     list-style: none;
     padding: 0;
@@ -81,7 +65,7 @@ ul#films li {
 }
 
 ul#films li.sold-out {
-    background-color: #ff6347; 
+    background-color: #ff6347; /* Tomato color for sold-out films */
     color: white;
 }
 
@@ -89,19 +73,64 @@ ul#films li:hover {
     background-color: #e0e0e0;
 }
 
+/* Movie details styles */
+#movie-details {
+    flex: 2;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Center content horizontally */
+}
 
+/* Movie poster styles */
+#poster {
+    width: 100%;
+    max-width: 200px; /* Adjusted max-width for better fit */
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Button styles */
+button {
+    background-color: #4caf50; /* Green color for button */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+button.sold-out {
+    background-color: #ff6347; /* Tomato color for sold-out button */
+    cursor: not-allowed; /* Change cursor to indicate button is not clickable */
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green on hover */
+}
+
+button.sold-out:hover {
+    background-color: #ff6347; /* Tomato color remains on hover */
+}
+
+/* Responsive styles */
 @media (max-width: 768px) {
     .container {
         flex-direction: column;
         align-items: center;
     }
 
-    #movie-details {
-        margin-bottom: 1rem;
+    aside {
+        margin-right: 0;
     }
 
     #poster {
         width: 100%;
-        max-width: none;
+        max-width: 100%;
     }
 }
