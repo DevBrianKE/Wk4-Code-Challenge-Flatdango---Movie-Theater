@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to **Flatdango**, a modern Movie Theater web application designed to enhance your movie-watching experience. This project showcases a dynamic and interactive platform where users can explore a curated list of movies, dive into detailed information about each one, and utilize search and filter functionalities to find their perfect movie match. Flatdango aims to provide an engaging and user-friendly interface for movie enthusiasts.
+Welcome to **Flatdango**, a modern Movie Theater web application designed to enhance your movie-watching experience. This project showcases a  platform where users can explore a curated list of movies, dive into detailed information about each one and  find their perfect movie match. Flatdango aims to provide an engaging and user-friendly interface for movie enthusiasts.
 
 ## Project Description
 
@@ -32,4 +32,4 @@ You can view the live project [here](https://devbrianke.github.io/Wk4-Code-Chall
 
 ## Author
 
-- **Kipchumba Brian** 
+- **Kipchumba Brian** - [GitHub](https://github.com/DevBrianKE) - [Email](kipchumbabrian47@gmail.com) 
