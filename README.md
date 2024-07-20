@@ -14,7 +14,6 @@ You can view the live project [here](https://devbrianke.github.io/Wk4-Code-Chall
 - **Movie Details**: Provides detailed information about a selected movie.
 - **Buy Ticket**: Allows users to purchase tickets for a movie, with the available tickets decreasing upon purchase. If the movie is sold out, the button will display "Sold Out."
 - **Update Movie Details**: Click on a movie in the menu to replace the currently displayed movie's details with the new movie's details.
-- **Sold Out Indicator**: When a movie is sold out (no available tickets remaining), the button text will change to "Sold Out" 
 
 ## Technologies Used
 - **HTML**: For the structure of the web pages.
