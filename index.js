@@ -2,7 +2,12 @@
 function fetchMovieData() {
     // Use the fetch API to get movie data from the `db.json` file
     fetch('http://localhost:3000/films')
-        .then(response => response.json()) // Convert the response to JSON format
+        .then(response => {
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            return response.json();
+        }) // Convert the response to JSON format
         .then(data => {
             console.log('Fetched Movie Data:', data); // Log the fetched data to the console
             displayMovies(data); // Pass the list of films to the displayMovies function
@@ -20,10 +25,12 @@ function displayMovies(movies) {
         const movieItem = document.createElement('li');
         movieItem.textContent = movie.title; // Set the text content to the movie title
         movieItem.dataset.id = movie.id; // Store the movie ID in a data attribute
+        movieItem.classList.add('film', 'item'); // Add classes for styling
 
         // Add an event listener to handle clicks on the movie item
         movieItem.addEventListener('click', () => {
             // Fetch the details of the clicked movie and display them
+            console.log('Movie clicked:', movie); // Log the clicked movie
             displayMovieDetails(movie);
         });
 
@@ -41,6 +48,14 @@ function displayMovieDetails(movie) {
     const showtimeElement = document.getElementById('showtime');
     const ticketsElement = document.getElementById('tickets');
 
+    // Checkng if the elements are being selected correctly
+    console.log('Poster Element:', posterElement);
+    console.log('Title Element:', titleElement);
+    console.log('Runtime Element:', runtimeElement);
+    console.log('Showtime Element:', showtimeElement);
+    console.log('Tickets Element:', ticketsElement);
+    console.log('Movie Details:', movie);
+
     // Update the HTML content with the movie details
     posterElement.src = movie.poster; // Set the poster image source
     titleElement.textContent = movie.title; // Set the movie title
@@ -52,5 +67,7 @@ function displayMovieDetails(movie) {
     ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
 }
 
+
 // Call the function to fetch movie data when the script loads
 fetchMovieData();
+
