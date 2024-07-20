@@ -25,6 +25,9 @@ main {
 }
 
 /* Container to hold movie details and movie menu */
-.container {
+/* .container {
     display: flex;
-}
+    justify-content: space-between;
+    width: 80%;
+    
+} */
