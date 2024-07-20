@@ -1,61 +1,56 @@
-document.addEventListener('DOMContentLoaded', () => {
-    const filmDetailsSection = document.getElementById('movie-details');
-    const filmList = document.getElementById('films');
-    const buyTicketButton = document.getElementById('buy-ticket');
-
-    // Fetch all movies and populate the film list
+// Fetch Movie Data from `db.json`
+function fetchMovieData() {
+    // Use the fetch API to get movie data from the `db.json` file
     fetch('http://localhost:3000/films')
-        .then(response => response.json())
+        .then(response => response.json()) // Convert the response to JSON format
         .then(data => {
-            data.forEach(film => {
-                const li = document.createElement('li');
-                li.classList.add('film', 'item');
-                li.dataset.id = film.id;
-                li.innerText = film.title;
-                li.addEventListener('click', () => showFilmDetails(film.id));
-                
-                filmList.appendChild(li);
-            });
+            console.log('Fetched Movie Data:', data); // Log the fetched data to the console
+            displayMovies(data.films); // Pass the list of films to the displayMovies function
+        })
+        .catch(error => console.error('Error fetching data:', error)); // Handle any errors that occur during fetch
+}
+
+// Function to display movies in the list
+function displayMovies(movies) {
+    const filmList = document.getElementById('films');
+    filmList.innerHTML = ''; // Clear any existing content
+
+    movies.forEach(movie => {
+        // Create a new list item for each movie
+        const movieItem = document.createElement('li');
+        movieItem.textContent = movie.title; // Set the text content to the movie title
+        movieItem.dataset.id = movie.id; // Store the movie ID in a data attribute
+
+        // Add an event listener to handle clicks on the movie item
+        movieItem.addEventListener('click', () => {
+            // Fetch the details of the clicked movie and display them
+            displayMovieDetails(movie);
         });
 
-    // Fetch and display details of a film
-    function showFilmDetails(id) {
-        fetch(`http://localhost:3000/films/${id}`)
-            .then(response => response.json())
-            .then(film => {
-                document.getElementById('poster').src = film.poster;
-                document.getElementById('title').innerText = film.title;
-                document.getElementById('runtime').innerText = `Runtime: ${film.runtime} mins`;
-                document.getElementById('showtime').innerText = `Showtime: ${film.showtime}`;
-                const ticketsAvailable = film.capacity - film.tickets_sold;
-                document.getElementById('tickets-available').innerText = `Tickets Available: ${ticketsAvailable}`;
-                
-                // Update the button state
-                if (ticketsAvailable <= 0) {
-                    buyTicketButton.innerText = 'Sold Out';
-                    buyTicketButton.disabled = true;
-                    document.querySelector(`[data-id="${film.id}"]`).classList.add('sold-out');
-                } else {
-                    buyTicketButton.innerText = 'Buy Ticket';
-                    buyTicketButton.disabled = false;
-                }
+        // Append the movie item to the film list
+        filmList.appendChild(movieItem);
+    });
+}
 
-                buyTicketButton.onclick = () => buyTicket(film.id, ticketsAvailable);
-            });
-    }
+// Function to display movie details
+function displayMovieDetails(movie) {
+    // Get the elements where movie details will be displayed
+    const posterElement = document.getElementById('poster');
+    const titleElement = document.getElementById('title');
+    const runtimeElement = document.getElementById('runtime');
+    const showtimeElement = document.getElementById('showtime');
+    const ticketsElement = document.getElementById('tickets-available'); // Corrected ID
 
-    // Handle buying a ticket
-    function buyTicket(id, ticketsAvailable) {
-        if (ticketsAvailable > 0) {
-            fetch(`http://localhost:3000/films/${id}`, {
-                method: 'PATCH',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({ tickets_sold: ticketsAvailable + 1 })
-            })
-            .then(response => response.json())
-            .then(() => showFilmDetails(id)); // Refresh details
-        }
-    }
-});
+    // Update the HTML content with the movie details
+    posterElement.src = movie.poster; // Set the poster image source
+    titleElement.textContent = movie.title; // Set the movie title
+    runtimeElement.textContent = `Runtime: ${movie.runtime} minutes`; // Set the runtime
+    showtimeElement.textContent = `Showtime: ${movie.showtime}`; // Set the showtime
+
+    // Calculate available tickets and update the text
+    const availableTickets = movie.capacity - movie.tickets_sold;
+    ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+}
+
+// Call the function to fetch movie data when the script loads
+fetchMovieData();
