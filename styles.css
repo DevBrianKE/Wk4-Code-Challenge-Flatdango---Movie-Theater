@@ -9,7 +9,7 @@ body {
 
 /* Header styles */
 header {
-    background-color: #ff6347; /* Tomato color for the header */
+    background-color: #fa5335; /* Tomato color for the header */
     color: white;
     text-align: center;
     padding: 1rem 0;
@@ -106,7 +106,7 @@ button {
 }
 
 button.sold-out {
-    background-color: #ff6347; /* Tomato color for sold-out button */
+    background-color: #fa5335; /* Tomato color for sold-out button */
     cursor: not-allowed; /* Change cursor to indicate button is not clickable */
 }
 
