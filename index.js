@@ -5,7 +5,7 @@ function fetchMovieData() {
         .then(response => response.json()) // Convert the response to JSON format
         .then(data => {
             console.log('Fetched Movie Data:', data); // Log the fetched data to the console
-            displayMovies(data.films); // Pass the list of films to the displayMovies function
+            displayMovies(data); // Pass the list of films to the displayMovies function
         })
         .catch(error => console.error('Error fetching data:', error)); // Handle any errors that occur during fetch
 }
@@ -39,7 +39,7 @@ function displayMovieDetails(movie) {
     const titleElement = document.getElementById('title');
     const runtimeElement = document.getElementById('runtime');
     const showtimeElement = document.getElementById('showtime');
-    const ticketsElement = document.getElementById('tickets-available'); // Corrected ID
+    const ticketsElement = document.getElementById('tickets');
 
     // Update the HTML content with the movie details
     posterElement.src = movie.poster; // Set the poster image source
