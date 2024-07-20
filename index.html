@@ -7,21 +7,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+    <!-- Header section with the title of the application -->
     <header>
         <h1>Flatdango Movie Theater</h1>
     </header>
+    <!-- Main content area -->
     <main>
         <div class="container">
             <section id = "movie details">
-                <img id= "Poster" src="" alt="Movie Poster">
-                <h2 id="title"> Movie Title</h2>
-                <p id="runtime">Runtime: XX mins</p>
-                <p id = "showtime">ShowTime: XX:XX PM</p>
-                <p id="tickets-availablle">Tckets Available: X</p>
-                <button id="buy-ticket">Buy Ticket</button>
+            <!-- Section to display movie details -->
+            <section id="movie-details">
+                <!-- Placeholder for movie poster -->
+                <img id="poster" src="" alt="Movie Poster"> 
+                <!-- Placeholder for movie title -->
+                <h2 id="title">Movie Title</h2> 
+                <!-- Placeholder for movie runtime -->
+                <p id="runtime">Runtime: XX mins</p> 
+                 <!-- Placeholder for movie showtime -->
+                <p id="showtime">Showtime: XX:XX PM</p>
+                <!-- Placeholder for available tickets -->
+                <p id="tickets-available">Tickets Available: X</p> 
+                <!-- Button to buy tickets -->
+                <button id="buy-ticket">Buy Ticket</button> 
             </section>
+            <aside>
+                <h2>Movies</h2>
+                <ul id = "films">
+                    <!-- Movies will be dynamically populated here -->
+                </ul>
+            </aside>
+            
 
         </div>
     </main>
+    <script src="index.js"></script>
 </body>
 </html>
