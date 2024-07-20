@@ -153,3 +153,107 @@
    }
  ]
 }
+{
+  "films": [
+    {
+      "id": "1",
+      "title": "The Giant Gila Monster",
+      "runtime": "108",
+      "capacity": 30,
+      "showtime": "04:00PM",
+      "tickets_sold": 27,
+      "description": "A giant lizard terrorizes a rural Texas community and a heroic teenager attempts to destroy the creature.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2157/p2157_v_v8_ab.jpg"
+    },
+    {
+      "id": "2",
+      "title": "Space Invaders",
+      "runtime": "95",
+      "capacity": 50,
+      "showtime": "06:00PM",
+      "tickets_sold": 20,
+      "description": "Aliens invade Earth, and a group of friends must save the world.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2158/p2158_v_v8_ab.jpg"
+    },
+    {
+      "id": "3",
+      "title": "The Haunted Mansion",
+      "runtime": "100",
+      "capacity": 40,
+      "showtime": "08:00PM",
+      "tickets_sold": 35,
+      "description": "A family moves into a haunted mansion and must solve its mysteries to escape.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2159/p2159_v_v8_ab.jpg"
+    },
+    {
+      "id": "4",
+      "title": "Robot Revolution",
+      "runtime": "120",
+      "capacity": 60,
+      "showtime": "09:00PM",
+      "tickets_sold": 50,
+      "description": "Robots rise up against humanity, and only a few can stop them.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2160/p2160_v_v8_ab.jpg"
+    },
+    {
+      "id": "5",
+      "title": "Mystery of the Lost City",
+      "runtime": "115",
+      "capacity": 45,
+      "showtime": "07:00PM",
+      "tickets_sold": 30,
+      "description": "A group of archaeologists uncover secrets in a lost city that could change history.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2161/p2161_v_v8_ab.jpg"
+    },
+    {
+      "id": "6",
+      "title": "Dragon's Quest",
+      "runtime": "102",
+      "capacity": 35,
+      "showtime": "05:00PM",
+      "tickets_sold": 25,
+      "description": "A young warrior embarks on a quest to defeat a dragon and save his village.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2162/p2162_v_v8_ab.jpg"
+    },
+    {
+      "id": "7",
+      "title": "The Time Traveler",
+      "runtime": "130",
+      "capacity": 40,
+      "showtime": "10:00PM",
+      "tickets_sold": 38,
+      "description": "A scientist invents a time machine and travels to the future, discovering a world in turmoil.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2163/p2163_v_v8_ab.jpg"
+    },
+    {
+      "id": "8",
+      "title": "The Secret Agent",
+      "runtime": "90",
+      "capacity": 50,
+      "showtime": "03:00PM",
+      "tickets_sold": 22,
+      "description": "A spy must stop an international conspiracy before it’s too late.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2164/p2164_v_v8_ab.jpg"
+    },
+    {
+      "id": "9",
+      "title": "Zombie Apocalypse",
+      "runtime": "85",
+      "capacity": 55,
+      "showtime": "11:00PM",
+      "tickets_sold": 50,
+      "description": "Survivors of a zombie outbreak fight to stay alive in a post-apocalyptic world.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2165/p2165_v_v8_ab.jpg"
+    },
+    {
+      "id": "10",
+      "title": "Alien Encounter",
+      "runtime": "120",
+      "capacity": 45,
+      "showtime": "08:30PM",
+      "tickets_sold": 42,
+      "description": "Humans come face-to-face with extraterrestrial beings in an intense first contact situation.",
+      "poster": "https://www.gstatic.com/tv/thumb/v22vodart/2166/p2166_v_v8_ab.jpg"
+    }
+  ]
+}

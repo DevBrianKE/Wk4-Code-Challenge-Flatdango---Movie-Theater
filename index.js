@@ -48,14 +48,6 @@ function displayMovieDetails(movie) {
     const showtimeElement = document.getElementById('showtime');
     const ticketsElement = document.getElementById('tickets');
 
-    // Checkng if the elements are being selected correctly
-    console.log('Poster Element:', posterElement);
-    console.log('Title Element:', titleElement);
-    console.log('Runtime Element:', runtimeElement);
-    console.log('Showtime Element:', showtimeElement);
-    console.log('Tickets Element:', ticketsElement);
-    console.log('Movie Details:', movie);
-
     // Update the HTML content with the movie details
     posterElement.src = movie.poster; // Set the poster image source
     titleElement.textContent = movie.title; // Set the movie title
@@ -67,7 +59,5 @@ function displayMovieDetails(movie) {
     ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
 }
 
-
 // Call the function to fetch movie data when the script loads
 fetchMovieData();
-
