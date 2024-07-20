@@ -1,60 +1,61 @@
-// Fetch Movie Data from `db.json`
-function fetchMovieData() {
-    fetch('http://localhost:3000/films') // Adjust URL if your server setup is different
+document.addEventListener('DOMContentLoaded', () => {
+    const filmDetailsSection = document.getElementById('movie-details');
+    const filmList = document.getElementById('films');
+    const buyTicketButton = document.getElementById('buy-ticket');
+
+    // Fetch all movies and populate the film list
+    fetch('http://localhost:3000/films')
         .then(response => response.json())
         .then(data => {
-            console.log('Fetched Movie Data:', data); // Log the fetched data to the console
-            if (data.films) {
-                displayMovies(data.films); // Pass the list of films to the displayMovies function
-            } else {
-                console.error('No films property found in data:', data);
-            }
-        })
-        .catch(error => console.error('Error fetching data:', error)); // Handle any errors that occur during fetch
-}
+            data.forEach(film => {
+                const li = document.createElement('li');
+                li.classList.add('film', 'item');
+                li.dataset.id = film.id;
+                li.innerText = film.title;
+                li.addEventListener('click', () => showFilmDetails(film.id));
+                
+                filmList.appendChild(li);
+            });
+        });
 
-// Display Movies in the Document
-function displayMovies(films) {
-    const movieList = document.getElementById('movie-list');
-    movieList.innerHTML = ''; // Clear existing content
-
-    films.forEach(film => {
-        const movieItem = document.createElement('div');
-        movieItem.className = 'movie-item';
-
-        movieItem.innerHTML = `
-            <img src="${film.poster}" alt="${film.title} Poster" class="movie-poster">
-            <h3>${film.title}</h3>
-            <p>Runtime: ${film.runtime} minutes</p>
-            <p>Showtime: ${film.showtime}</p>
-            <p>Capacity: ${film.capacity}</p>
-            <p>Tickets Sold: ${film.tickets_sold}</p>
-            <p>Description: ${film.description}</p>
-            <button onclick="showDetails('${film.id}')">View Details</button>
-        `;
-
-        movieList.appendChild(movieItem);
-    });
-}
-
-// Function to Show Details of a Movie
-function showDetails(id) {
-    fetch('http://localhost:3000/films') // Adjust URL if needed
-        .then(response => response.json())
-        .then(data => {
-            const film = data.films.find(film => film.id === id);
-            if (film) {
+    // Fetch and display details of a film
+    function showFilmDetails(id) {
+        fetch(`http://localhost:3000/films/${id}`)
+            .then(response => response.json())
+            .then(film => {
                 document.getElementById('poster').src = film.poster;
-                document.getElementById('title').textContent = film.title;
-                document.getElementById('runtime').textContent = `Runtime: ${film.runtime} minutes`;
-                document.getElementById('showtime').textContent = `Showtime: ${film.showtime}`;
-                document.getElementById('tickets-available').textContent = `Tickets Available: ${film.capacity - film.tickets_sold}`;
-            } else {
-                console.error('Film not found:', id);
-            }
-        })
-        .catch(error => console.error('Error fetching film details:', error));
-}
+                document.getElementById('title').innerText = film.title;
+                document.getElementById('runtime').innerText = `Runtime: ${film.runtime} mins`;
+                document.getElementById('showtime').innerText = `Showtime: ${film.showtime}`;
+                const ticketsAvailable = film.capacity - film.tickets_sold;
+                document.getElementById('tickets-available').innerText = `Tickets Available: ${ticketsAvailable}`;
+                
+                // Update the button state
+                if (ticketsAvailable <= 0) {
+                    buyTicketButton.innerText = 'Sold Out';
+                    buyTicketButton.disabled = true;
+                    document.querySelector(`[data-id="${film.id}"]`).classList.add('sold-out');
+                } else {
+                    buyTicketButton.innerText = 'Buy Ticket';
+                    buyTicketButton.disabled = false;
+                }
 
-// Call fetchMovieData to load movies on page load
-window.onload = fetchMovieData;
+                buyTicketButton.onclick = () => buyTicket(film.id, ticketsAvailable);
+            });
+    }
+
+    // Handle buying a ticket
+    function buyTicket(id, ticketsAvailable) {
+        if (ticketsAvailable > 0) {
+            fetch(`http://localhost:3000/films/${id}`, {
+                method: 'PATCH',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ tickets_sold: ticketsAvailable + 1 })
+            })
+            .then(response => response.json())
+            .then(() => showFilmDetails(id)); // Refresh details
+        }
+    }
+});
