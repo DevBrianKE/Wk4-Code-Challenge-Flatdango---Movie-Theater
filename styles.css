@@ -1,33 +1,87 @@
-/* Basic styling for the entire document */
+
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
     background-color: #f0f0f0;
-    color: #333
+    color: #333;
 }
 
-/* Header styling */
 header {
-    background-color: #ff6347;
+    background-color: #ff6347; /* Tomato color */
+    color: white;
+    text-align: center;
+    padding: 1rem 0;
 }
- 
-/* Header title styling */
+
 h1 {
     margin: 0;
 }
 
-/* Main content area styling */
 main {
     display: flex;
     justify-content: center;
     padding: 1rem;
 }
 
-/* Container to hold movie details and movie menu */
-/* .container {
+.container {
     display: flex;
     justify-content: space-between;
     width: 80%;
-    
-} */
+    max-width: 1200px;
+}
+
+#movie-details {
+    flex: 2;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#poster {
+    width: 100%;
+    max-width: 300px;
+    border-radius: 8px;
+}
+
+button {
+    background-color: #4caf50; /* Green color */
+    color: white;
+    border: none;
+    padding: 0.5rem 1rem;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+button:hover {
+    background-color: #45a049; /* Darker green */
+}
+
+aside {
+    flex: 1;
+    padding: 1rem;
+}
+
+ul#films {
+    list-style: none;
+    padding: 0;
+}
+
+ul#films li {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+li.sold-out {
+    background-color: #ff6347; 
+    color: white;
+}
+
+li.film.item {
+    cursor: pointer;
+}

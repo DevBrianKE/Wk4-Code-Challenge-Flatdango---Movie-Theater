@@ -1,40 +1,60 @@
 // Fetch Movie Data from `db.json`
-
-// Function to fetch movie data
 function fetchMovieData() {
-    //use the fetch API to get movie data from the db.json file
-    fetch('http://localhost:3000/films')
-    .then(response => response.json())// Convert the response to JSON format
-    .then(data => {
-        console.log('Fetched Movie Data:', data)// Log the fetched data to the console
-        const films = data.films // Store the list of films from the JSON data
-    })
-    // Handle any errors that occur during fetch
-    .catch(error => console.error('Error fetching data:', error)); 
+    fetch('http://localhost:3000/films') // Adjust URL if your server setup is different
+        .then(response => response.json())
+        .then(data => {
+            console.log('Fetched Movie Data:', data); // Log the fetched data to the console
+            if (data.films) {
+                displayMovies(data.films); // Pass the list of films to the displayMovies function
+            } else {
+                console.error('No films property found in data:', data);
+            }
+        })
+        .catch(error => console.error('Error fetching data:', error)); // Handle any errors that occur during fetch
 }
-// Call the function to fetch movie data when the script loads
-fetchMovieData();
-// Function to display movies in the list
 
+// Display Movies in the Document
+function displayMovies(films) {
+    const movieList = document.getElementById('movie-list');
+    movieList.innerHTML = ''; // Clear existing content
 
-// Display Movie Details
+    films.forEach(film => {
+        const movieItem = document.createElement('div');
+        movieItem.className = 'movie-item';
 
-// Function to display movie details
-function displayMovieDetails(movie) {
-    // get the elements where movie details will be displayed
-    const posterElement = document.getElementById('poster')
-    const titleElement = document.getElementById('title')
-    const runtimeElement = document.getElementById('runtime')
-    const showtimeElement = document.getElementById('showtime')
-    const ticketsElement = document.getElementById('tickets')
+        movieItem.innerHTML = `
+            <img src="${film.poster}" alt="${film.title} Poster" class="movie-poster">
+            <h3>${film.title}</h3>
+            <p>Runtime: ${film.runtime} minutes</p>
+            <p>Showtime: ${film.showtime}</p>
+            <p>Capacity: ${film.capacity}</p>
+            <p>Tickets Sold: ${film.tickets_sold}</p>
+            <p>Description: ${film.description}</p>
+            <button onclick="showDetails('${film.id}')">View Details</button>
+        `;
 
-    //update the HTML content with the movie details
-    posterElement.src = movie.poster //set the poster image
-    titleElement.textContent = movie.title //set the movie title
-    runtimeElement.textContent = `Runtime: ${movie.runtime} minutes`; // Set the runtime
-    showtimeElement.textContent = `Showtime: ${movie.showtime}`; // Set the showtime
-
-    // Calculate available tickets and update the text
-    const availableTickets = movie.capacity - movie.tickets_sold;
-    ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+        movieList.appendChild(movieItem);
+    });
 }
+
+// Function to Show Details of a Movie
+function showDetails(id) {
+    fetch('http://localhost:3000/films') // Adjust URL if needed
+        .then(response => response.json())
+        .then(data => {
+            const film = data.films.find(film => film.id === id);
+            if (film) {
+                document.getElementById('poster').src = film.poster;
+                document.getElementById('title').textContent = film.title;
+                document.getElementById('runtime').textContent = `Runtime: ${film.runtime} minutes`;
+                document.getElementById('showtime').textContent = `Showtime: ${film.showtime}`;
+                document.getElementById('tickets-available').textContent = `Tickets Available: ${film.capacity - film.tickets_sold}`;
+            } else {
+                console.error('Film not found:', id);
+            }
+        })
+        .catch(error => console.error('Error fetching film details:', error));
+}
+
+// Call fetchMovieData to load movies on page load
+window.onload = fetchMovieData;
