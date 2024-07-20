@@ -1,0 +1,30 @@
+/* Basic styling for the entire document */
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f0f0f0;
+    color: #333
+}
+
+/* Header styling */
+header {
+    background-color: #ff6347;
+}
+ 
+/* Header title styling */
+h1 {
+    margin: 0;
+}
+
+/* Main content area styling */
+main {
+    display: flex;
+    justify-content: center;
+    padding: 1rem;
+}
+
+/* Container to hold movie details and movie menu */
+.container {
+    display: flex;
+}
