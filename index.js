@@ -22,15 +22,15 @@ document.addEventListener('DOMContentLoaded', () => {
                 
                 // Automatically display the first movie's details
                 if (data.length > 0) {
-                    fetchAndDisplayFirstMovie();
+                    fetchAndDisplayMovieDetails(data[0].id);
                 }
             })
             .catch(error => console.error('Error fetching data:', error));
     }
 
-    // Function to fetch and display the first movie's details
-    function fetchAndDisplayFirstMovie() {
-        fetch('http://localhost:3000/films/1')
+    // Function to fetch and display a movie's details by ID
+    function fetchAndDisplayMovieDetails(movieId) {
+        fetch(`http://localhost:3000/films/${movieId}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
@@ -38,10 +38,10 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(movie => {
-                console.log('First Movie Data:', movie);
+                console.log('Fetched Movie Details:', movie);
                 displayMovieDetails(movie);
             })
-            .catch(error => console.error('Error fetching the first movie data:', error));
+            .catch(error => console.error('Error fetching movie details:', error));
     }
 
     // Function to display movies in the list
@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             movieItem.addEventListener('click', () => {
                 console.log('Movie clicked:', movie);
-                displayMovieDetails(movie);
+                fetchAndDisplayMovieDetails(movie.id);
             });
 
             filmList.appendChild(movieItem);
@@ -77,20 +77,20 @@ document.addEventListener('DOMContentLoaded', () => {
         runtimeElement.textContent = `Runtime: ${movie.runtime} minutes`;
         showtimeElement.textContent = `Showtime: ${movie.showtime}`;
          
-       //Define availableTickets
-       let availableTickets = movie.capacity - movie.tickets_sold;
-       ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+        // Define availableTickets
+        let availableTickets = movie.capacity - movie.tickets_sold;
+        ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
        
-       // Enable or disable the Buy Ticket button based on availability
-       buyButton.disabled = availableTickets <= 0;
-       buyButton.onclick = () => {
-           if (availableTickets > 0) {
-               availableTickets -= 1;
-               ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
-               buyButton.disabled = availableTickets <= 0;
-           }
-       };
-   }
+        // Enable or disable the Buy Ticket button based on availability
+        buyButton.disabled = availableTickets <= 0;
+        buyButton.onclick = () => {
+            if (availableTickets > 0) {
+                availableTickets -= 1;
+                ticketsElement.textContent = `Tickets Available: ${availableTickets}`;
+                buyButton.disabled = availableTickets <= 0;
+            }
+        };
+    }
 
     // Fetch movie data when the DOM content is loaded
     fetchMovieData();
