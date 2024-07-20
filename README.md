@@ -4,13 +4,6 @@
 
 Welcome to **Flatdango**, a modern Movie Theater web application designed to enhance your movie-watching experience. This project showcases a  platform where users can explore a curated list of movies, dive into detailed information about each one and  find their perfect movie match. Flatdango aims to provide an engaging and user-friendly interface for movie enthusiasts.
 
-## Project Description
-
-Flatdango is a web application that enables users to:
-
-- **View a list of movies**: Browse through an organized display of movies, complete with titles and posters.
-- **Get detailed information about each movie**: Access in-depth details such as plot summaries, cast, and ratings for each movie.
-
 ## Live Demo
 
 You can view the live project [here](https://devbrianke.github.io/Wk4-Code-Challenge-Flatdango---Movie-Theater/).
@@ -19,9 +12,11 @@ You can view the live project [here](https://devbrianke.github.io/Wk4-Code-Chall
 
 - **Movie List**: Displays a list of movies with titles and posters.
 - **Movie Details**: Provides detailed information about a selected movie.
+- **Buy Ticket**: Allows users to purchase tickets for a movie, with the available tickets decreasing upon purchase. If the movie is sold out, the button will display "Sold Out."
+- **Update Movie Details**: Click on a movie in the menu to replace the currently displayed movie's details with the new movie's details.
+- **Sold Out Indicator**: When a movie is sold out (no available tickets remaining), the button text will change to "Sold Out" 
 
 ## Technologies Used
-
 - **HTML**: For the structure of the web pages.
 - **CSS**: For styling the application and creating a visually appealing user interface.
 - **JavaScript**: For interactivity and dynamic content.
