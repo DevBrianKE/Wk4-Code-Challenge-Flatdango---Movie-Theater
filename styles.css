@@ -68,7 +68,7 @@ ul#films li {
 }
 
 ul#films li.sold-out {
-    background-color: #ff6347; /* Tomato color for sold-out films */
+    background-color: #01ADE2; 
     color: white;
 }
 
@@ -119,7 +119,7 @@ button:hover {
 }
 
 button.sold-out:hover {
-    background-color: #ff6347; /* Tomato color remains on hover */
+    background-color: #01ADE2; 
 }
 
 /* Responsive styles */
