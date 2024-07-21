@@ -13,9 +13,8 @@ Welcome to **Flatdango**, a modern Movie Theater web application designed to enh
 
 ## Video Demonstration
 
-![Flatdango Video Demonstration](media/screen-capture-ezgif.com-video-to-gif-converter.gif)
+![Flatdango Video Demonstration](media/flatdango.gif)
 
-You can watch the full video demonstration of the website functionality [here](media/screen-capture.webm).
 
 ## Technologies Used
 
